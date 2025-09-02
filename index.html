@@ -3,186 +3,125 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>تسجيل الدخول - ديسكورد</title>
+<title>واجهة دخول ديسكورد | SLS Freeroom</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap');
-
-  /* الخلفية والهيكل العام */
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal&display=swap');
   body {
-    margin: 0;
-    background: #2f2f50 url('https://cdn.discordapp.com/attachments/1051691047793315881/1096247187364884846/noname_2.png') center center no-repeat;
-    background-size: cover;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    background: radial-gradient(circle, #2a2e47 1px, transparent 1px), #23254a;
+    background-size: 50px 50px;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     color: white;
   }
-
-  /* الحاوية الرئيسية */
-  .login-box {
+  .login-container {
     background: #2f3136;
+    width: 400px;
+    padding: 30px 20px;
     border-radius: 8px;
-    width: 460px;
+    box-shadow: 0 0 20px #7289daaa;
     display: flex;
-    box-shadow: 0 0 30px rgba(0,0,0,0.7);
+    gap: 20px;
   }
-
-  /* صندوق اليسار - حقول تسجيل الدخول */
   .login-form {
-    flex: 1.1;
-    padding: 30px 40px 35px 40px;
-    font-size: 14px;
+    flex: 2;
   }
-
   .login-form h2 {
     margin-bottom: 10px;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 20px;
   }
-
-  .login-form p.subtitle {
-    font-size: 12px;
+  .login-form small {
     color: #72767d;
-    margin-bottom: 22px;
   }
-  
   label {
-    font-weight: 600;
-    font-size: 13px;
-    margin-bottom: 6px;
     display: block;
-    user-select: none;
+    margin: 15px 0 5px;
+    font-size: 13px;
+    color: #b9bbbe;
   }
-
   input[type="text"], input[type="password"] {
     width: 100%;
-    background-color: #202225;
+    background: #202225;
     border: none;
-    border-radius: 5px;
-    padding: 12px 14px;
-    color: #dcddde;
-    font-size: 16px;
-    box-sizing: border-box;
-    margin-bottom: 15px;
-    transition: border 0.3s ease;
+    border-radius: 3px;
+    padding: 10px;
+    color: white;
+    font-size: 14px;
   }
-
   input::placeholder {
     color: #72767d;
   }
-
-  input:focus {
-    outline: none;
-    border: 2px solid #5865f2;
-    background-color: #2a2c2f;
-  }
-
   button {
+    margin-top: 20px;
     width: 100%;
-    background: #5865f2;
-    color: white;
-    padding: 14px;
-    font-weight: 600;
+    background-color: #5865f2;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
     cursor: pointer;
-    margin-top: 10px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  button:hover {
-    background: #4752c4;
-  }
-
-  .links {
-    margin-top: 15px;
-    font-size: 13px;
-    color: #72767d;
-  }
-  .links a {
-    color: #00aff4;
-    text-decoration: none;
-  }
-  .links a:hover {
-    text-decoration: underline;
-  }
-
-  /* صندوق اليمين - QR كود */
-  .qr-box {
-    width: 230px;
-    background: #36393f;
-    border-radius: 8px 0 0 8px;
-    padding: 30px 25px 30px 25px;
-    box-sizing: border-box;
-    text-align: center;
-    color: #dcddde;
     font-size: 14px;
   }
-
-  .qr-box h3 {
-    margin-bottom: 10px;
-    font-weight: 600;
-    font-size: 18px;
+  button:hover {
+    background-color: #4752c4;
   }
-
-  .qr-box p {
+  .qr-section {
+    flex: 1;
+    background: #36393f;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
     font-size: 12px;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    color: #72767d;
+    color: #b9bbbe;
   }
-
-  .qr-code {
-    background: white;
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 15px auto;
-    border-radius: 10px;
+  .qr-section img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
   }
-
-  /* نص صغير في الأسفل */
-  .terms {
-    font-size: 11px;
-    color: #72767d;
-    margin-top: 12px;
-    user-select: none;
+  .qr-section h4 {
+    margin: 8px 0 4px;
   }
 </style>
 </head>
 <body>
-
-<div class="login-box" role="main" aria-label="نموذج تسجيل الدخول">
-  <form class="login-form" autocomplete="off">
+<div class="login-container" id="loginPage">
+  <form class="login-form" id="loginForm">
     <h2>Welcome back!</h2>
-    <p class="subtitle">We’re so excited to see you again!</p>
-    
+    <small>We're so excited to see you again!</small>
     <label for="email">Email or Phone Number</label>
-    <input type="text" id="email" placeholder="Email or Phone Number" autocomplete="username" required />
-    
+    <input type="text" id="email" placeholder="Email or Phone Number" required />
     <label for="password">Password</label>
-    <input type="password" id="password" placeholder="Password" autocomplete="current-password" required />
-    
+    <input type="password" id="password" placeholder="Password" required />
     <button type="submit">Log In</button>
-
-    <div class="links" style="margin-top:12px;">
-      <p><a href="#">Forgot your password?</a></p>
-      <p>Need an account? <a href="#">Register</a></p>
-    </div>
-
-    <p class="terms">© 2025 Discord</p>
   </form>
-
-  <div class="qr-box" aria-label="تسجيل الدخول عبر رمز الاستجابة السريعة">
-    <h3>Log in with QR Code</h3>
-    <div class="qr-code" aria-hidden="true">
-      <!-- يمكنك وضع صورة QR هنا -->
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://discord.com/login" alt="QR Code" style="width:140px; height:140px; border-radius:10px;" />
-    </div>
-    <p>Scan this with the Discord mobile app to log in instantly</p>
-    <p>Or log in with e-mail and password</p>
+  <div class="qr-section">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/QR_Code.svg/1024px-QR_Code.svg.png" alt="QR Code" />
+    <h4>Log in with QR Code</h4>
+    <small>Scan this with the Discord mobile app to log in instantly.</small>
   </div>
 </div>
 
+<div id="sitePage" style="display:none;">
+  <!-- هنا يدخل كود صفحة الموقع بعد تسجيل الدخول -->
+  <h1 style="text-align:center; margin-top:30vh; color:white;">مرحبًا بك في موقع SLS Freeroom</h1>
+</div>
+
+<script>
+  const loginForm = document.getElementById('loginForm');
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    // يمكن هنا تنفيذ التحقق أو إرسال البيانات عبر API مثل الكود الأصلي
+    // ثم إذا تم التحقق بنجاح نعرض صفحة الموقع ونخفي صفحة الدخول
+    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('sitePage').style.display = 'block';
+  });
+</script>
 </body>
 </html>
